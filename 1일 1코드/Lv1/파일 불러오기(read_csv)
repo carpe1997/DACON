@@ -1,0 +1,10 @@
+파이썬에서 데이터 파일(csv 파일)을 불러오기 위해서는 pandas 라이브러리를 이용한다.
+
+pandas를 이용해 csv 파일을 불러오기 위해서는 아래와 같이 pandas를 먼저 import 해야한다. 그리고 약어로 지정한 pd를 사용하여 read_csv함수를 통해 csv 파일을 불러 올 수 있다.
+
+import [라이브러리] as [사용할이름]
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
