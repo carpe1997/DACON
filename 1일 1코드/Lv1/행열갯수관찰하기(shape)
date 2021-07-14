@@ -1,0 +1,4 @@
+read_csv를 통해 csv파일을 pandas 라이브러리에서 제공하는 dataframe 객체로 변환했다면, 불러온 데이터의 행과 열의 갯수를 관찰할 수 있다.
+
+[DataFrame 변수명].shape
+df.shape
