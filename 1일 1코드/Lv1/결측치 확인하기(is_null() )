@@ -1,0 +1,14 @@
+결측치는 말 그대로 데이터에 값이 없는 것을 뜻한다. 줄여서 'NA' 또는 'NULL' 이라고 표현한다.
+
+pandas에서는 결측치를 NaN으로 표현하며, isnull() 메서드를 사용하면 DataFrame에서 NaN 값을 확인할 수 있다.
+
+isnull() 메서드는 DataFrame에서 데이터가 NaN 값이면 True로 , 그렇지 않으면 False로 리턴한다.
+
+import pandas as pd
+import numpy as np
+
+df=pd.DataFrame({'name':['a','b','c'],'age':[30,np.nan,19],'class':[np.nan,2,3]})
+
+df.isnull()
+
+df.isnull().sum() 하게 되면 데이터 프레임의 각 열 별 결측치 수를 확인할 수 있다.
