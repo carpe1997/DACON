@@ -1,0 +1,5 @@
+해당 라이브러리로부터 원하는 모듈을 불러오기
+sklearn.Tree 에서 DecisionTreeRegressor 모듈을 불러온다.
+
+from sklearn.Tree import DecisionTreeRegressor
+model=DecisionTreeRegressor()
