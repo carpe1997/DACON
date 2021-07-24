@@ -1,0 +1,4 @@
+테스트 파일을 훈련된 모델로 예측해본다.
+훈련된 모델에서 predict() 매서드에 예측하고자 하는 data를 인자로 넣어주게 되면 해당 결과 array를 할당할 수 있다.
+
+[할당할 array]= model.predict(test)
