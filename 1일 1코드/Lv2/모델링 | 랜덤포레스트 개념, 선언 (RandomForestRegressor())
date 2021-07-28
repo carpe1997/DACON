@@ -1,0 +1,6 @@
+랜덤 포레스트는 여러 개의 의사결정나무를 만들어서 이들의 평균으로 예측의 성능을 높이는 방법이며, 이러한 기법을 앙상블 기법이라고 한다.
+주어진 하나의 데이터로부터 여러 개의 랜덤 데이터셋을 추출해서, 각 데이터셋을 통해 모델을 여러개 만들 수 있따.
+
+from sklearn.ensemble import RandomForestRegressor
+
+model=RandomForestRegressor()
