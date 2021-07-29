@@ -1,0 +1,5 @@
+랜덤포레스트 모듈의 옵션 중 criterion 옵션을 통해 어떤 평가척도를 기준으로 훈련할 것인지 정할 수 있다.
+평가지표 RMSE입니다. RMSE는 MSE평가지표의 루트를 씌운 것으로서, 모델을 선언할 때 criterion='mse' 옵션으로 구현가능하다.
+
+model=RandomForestRegressor(criterion='mse')
+
