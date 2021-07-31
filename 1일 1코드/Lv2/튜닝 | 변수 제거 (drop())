@@ -1,0 +1,30 @@
+	변수중요도가 낮은 피쳐를 파악하고 나면 차례대로 하나씩 피쳐를 제거하면서 모델을 새로 훈련할 수 있습니다. 각 모델로 예측하여 성능을 비교해보겠습니다.
+
+	우선 id 피쳐는 예측에 의미가 없는 피쳐입니다. id 와 count 를 drop 한 X_train_1 훈련 df 을 새로 생성합니다. 예측을 할 때 test 는 훈련 셋과 동일한 피쳐를 가져야 합니다. 따라서 동일하게 피쳐를 drop 한 test_1 df 를 생성해줍니다.
+
+	hour_bef_windspeed 와 hour_bef_pm2.5 피쳐에 관하여도 추가로 drop 을 수행하면서 위의 과정을 반복해보세요. 그럼 총 3 쌍의 X_train 셋과 test 셋이 생성됩니다.
+
+	이에 따라 각 모델로 예측한 예측값들을 submission 에 저장한 후, 리더보드에 제출해 점수를 비교해보세요.
+  
+  # X_train 에서 drop 할 피쳐의 경우의 수 대로 3개의 X_train 을 생성하세요.
+
+X_train_1 = train.drop(['drop 할 피쳐'], axis=1)
+
+# 각 train 에 따라 동일하게 피쳐를 drop 한 test 셋들을 생성하세요.
+
+test_1 = test.drop(['drop 할 피쳐'], axis = 1)
+
+# 각 X_train 에 대해 모델 훈련을 해주세요.
+
+model_input_var1 = RandomForestRegressor(criterion = 'mse')
+model_input_var1.fit(X_train_1, Y_train)
+
+# 각 모델로 test 셋들을 예측해주세요.
+
+y_pred_1 = model_input_var1.predict(test_1)
+
+# 각 결과들을 submission 파일로 저장해주세요.
+
+submission_1 = pd.read_csv('data/submission.csv')
+submission_1['count'] = y_pred_1
+submission_1.to_csv('sub_1.csv', index = False)
