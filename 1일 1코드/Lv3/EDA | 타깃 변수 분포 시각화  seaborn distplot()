@@ -1,0 +1,29 @@
+Lv3 부터 EDA 과정에 시각화를 진행합니다. 가장 중요한 변수, 예측하고자 하는 변수인 종속변수(quality) 의 분포를 시각화한다.
+matplotlib, seaborn 라이브러리로 시각화를 출력할 수 있다. 시각화 결과를 통해 머신러닝 방향성을 잡을 수 있다.
+
+import matplotlib
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+시각화를 진행할 때는 보통 copy() 매서드로 복사본을 생성한 후 진행한다.
+
+dfcopy = df.copy()
+
+seaborn 의 distplot() 매서드를 이용한다.
+
+sns.distplot(df['피쳐명'], kde=True, bins=None)
+
+df['피쳐명']: 출력하고자 하는 컬럼
+
+kde: '그래프에 선을 출력할지 여부'
+
+bins: '출력할 막대그래프 갯수'
+
+matplotlib 의 axis() 매서드로 그래프 축의 최솟값, 최댓값을 지정할 수 있다.
+
+plt.axis(['x 축 최솟값, x 축 최댓값, y 축 최솟값, y 축 최댓값'])
+
+matplotlib 의 title() 매서드로 그래프의 제목을 지정할 수 있다.
+
+plt.title('제목')
