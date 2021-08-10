@@ -1,0 +1,5 @@
+Matplotlib는 데이터 시각화 라이브러리이다. 라이브러리를 불러오고 plot() 메서드를 활요해 선 그래프를 그려본다.
+
+from matplotlib import pyplot as plt
+plt.plot(x,y)
+plt.show()
