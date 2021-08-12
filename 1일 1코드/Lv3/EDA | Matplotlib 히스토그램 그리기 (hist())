@@ -1,0 +1,7 @@
+히스토그램(histogram)은 도수분포표를 그래프로 나타낸 것이다.
+변수들의 분포정도를 볼 떄 유용하다
+
+
+from matplotlib.pyplot as plt
+plt.hist(x,y)
+plt.show()
