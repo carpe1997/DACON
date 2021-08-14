@@ -1,0 +1,24 @@
+의사결정 나무나, 랜덤포레스트 같은 '트리 기반의 모델' 들은 대소 비교를 통해서 구분하기 때문에, 숫자의 단위에 크게 영향을 받지 않습니다.
+하지만, Logistic Regression, Lasso 등과 같은 '평활 함수 모델'들은 숫자의 크기와 단위에 영향을 많이 받습니다.
+따라서, 수치형 데이터 정규화를 통해 모든 모델에 잘 어울리는 데이터를 만들어주고자 한다.
+다양한 수치형 데이터 정규화 방법 중에서, 'Min-Max Scailing' 기법은 간단하다.
+가장 작은 값을 0으로, 가장 큰 값은 1로 만들어주는 방법이다.
+그리고 그 사이의 값들은 비율에 따라서 0~1 사이에 분포하게 됩니다.
+
+# describe를 통해 "fixed acidity"의 데이터의 분포가 어떻게 생겼는지 짐작해 보세요
+train.describe()
+
+# seaborn의 displot을 통해 "fixed acidity"의 distplot을 그려 봅시다.
+sns.distplot(train['fixed acidity'])
+
+# MinMaxScaler를 "scaler"라는 변수에 지정해 봅시다.
+scaler=MinMaxScaler()
+
+# "scaler"를 학습시켜주세요
+scaler.fit(train[['fixed acidity']])
+
+# "scaler"를 통해 train의 "fixed acidity"를 바꾸어 "Scaled fixed acidity"라는 column에 저장해주세요
+train['Scaled fixed acidity']=scaler.transform(train[['fixed acidity']])
+
+# seaborn의 displot을 통해 "Scaled fixed acidity"의 distplot을 그려보세요
+sns.distplot(train['Scaled fixed acidity'])
