@@ -1,0 +1,43 @@
+컴퓨터는 문자로 된 데이터를 학습할 수 없다.
+그래서 type 같은 피쳐들은 컴퓨터가 읽어서 학습 할 수 있도록 인코딩을 해주어야 한다.
+그래서 인코딩의 방법 중 하나인 'One-Hot Encoding' 에 대해 알아보겠다.
+ 'One-Hot Encoding' 은 말 그대로, 하나만 Hot하고 나머지는 Cold한 데이터를 의미한다.
+즉, 자신에게 맞는 것은 1로, 나머지는 0으로 바꾸어 준다.
+
+예를 들어서
+아래의 '출신 지역' 이라는 변수는 문자로 되어있기 때문에. 컴퓨터가 이해할 수 없다.
+그래서 컴퓨터가 이해할 수 있도록 숫자로 바꿔줘야 한다.
+자신에 해당 되는 값은 1인 "Hot"한 값을 주고, 나머지는 0인 "Cold"한 값을 주는 방법입니다.
+ 
+
+# "OneHotEncoder"를 "encoder"라는 변수에 저장
+
+encoder=OneHotEncodder()
+
+# "encoder"를 사용해 train의 "type" 피쳐를 학습
+
+encoder.fit(train[['type']])
+
+# "encoder"를 사용해 train의 "type"피쳐를 변환해 "onehot"이라는 변수에 저장
+
+onehot = encoder.transform(train[['type']])
+ 
+# "onehot"이라는 변수를 array 형태로 변환
+
+onehot = onehot.toarry()
+
+# "onehot"이라는 변수를 DataFrame 형태로 변환
+
+onehot =pd.DataFrame(onehot)
+
+# encoder의 "get_feature_names()"를 사용해 column 이름을 변경
+
+onehot.columns = encoder.get_feature_names()
+
+# onehot을 원본데이터인 train에 병합
+
+onehot = pd.concat([train, onehot], axis = 1)
+
+# train의 "type" 변수를 제거
+
+train = train.drop(columns=['type'])
