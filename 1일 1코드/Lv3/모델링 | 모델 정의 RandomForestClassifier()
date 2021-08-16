@@ -1,0 +1,17 @@
+다만 이번에는 “회귀 모형”이 아닌 “분류 모형”을 사용해보자
+
+회귀 모형은 집값, 주가, 시가 등등 특정한 값을 맞추는 모형이라면, 분류 모형은 어떤 그룹에 속할지를 예측하는 모형이다.
+
+우리가 다루고 있는 “와인 품질 분류”는 말 그대로, 와인의 품질이 어느정도일지를 예측하는 문제이기 때문에, “분류 모델”을 사용해서 예측한다.
+
+Randomforest 모형을 불러와 정의하는 실습을 해보겠다
+
+Random Forest 모형은 위에서 불러왔던 것과 같이, sklearn.ensemble 안에 있다
+
+# 랜덤포레스트 분류 모형을 불러오세요
+
+from sklearn.ensemble import RandomForestClassifier
+
+# 랜덤포레스트 분류 모형을 "random_forest"라는 변수에 저장하세요
+
+random_forest = RandomForestClassifier()
