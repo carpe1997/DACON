@@ -1,0 +1,19 @@
+교차검증
+
+K-Fold의 아이디어는 단순하다.
+"모든 데이터를 최소한 한 번씩 다 학습하게 하자!"
+그래서 valid 데이터를 겹치지 않게 나누어 N개의 데이터셋을 만들어 낸다.
+만약 데이터셋을 5개로 만든다고 하면, (==valid size가 20%) 겹치지 않게 위와 같은 모양으로 만들 수 있다.
+그리고 반복문을 통해서 1번부터 5번 데이터들에 들어갔다가 나오면서, 데이터를 모두 최소한 한번씩은 학습한다.
+
+
+# sklearn에 model_selection 부분 속 KFold를 불러와보세요
+from sklearn.model_selection import KFold
+
+# KFold에 n_splits = 5, shuffle = True, random_state = 0이라는 인자를 추가해 "kf"라는 변수에 저장해보세요
+Kf=KFold(n_split=5, shuffle=True, random_state)
+
+# 반복문을 통해서 1번부터 5번까지의 데이터에 접근해보세요
+for train_idx, valid_idx in kf.split(train):
+  train_data = train.iloc[train_idx]
+  valid_data = trian.iloc[valid_idx]
