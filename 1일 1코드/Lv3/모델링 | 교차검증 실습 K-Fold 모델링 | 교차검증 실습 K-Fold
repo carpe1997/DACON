@@ -1,0 +1,129 @@
+교차 검증의 정의와 반복문으로 train-valid로 나누는 방법을 저번에 알아보았다.
+
+이를 실습해보겠다.
+
+
+이번 시간의 내용을 위의 이미지와 함께 정리하면 다음과 같다.
+
+ 
+
+1. K-Fold를 이용해서 Train 과 Valid Data를 나눈다.
+
+2. Model을 이용해서 train 데이터를 학습한다.
+
+3. Model을 이용해서 valid 데이터를 예측해 성능을 확인한다.
+
+4. Model을 이용해서 test 데이터를 이용한다.
+
+5. n_splits를 5호 설정한다면, 5개의 결과값들에 대한 "최빈값"을 이용해 가장 등장할 가능성이 높은 결과값으로 결정한다.
+
+6. 결과를 제출한다.
+
+
+
+# "X"라는 변수에 train의 "index"와 "quality"를 제외하고 지정해 주세요
+# "y"라는 변수에는 "quality"를 지정해 주세요
+
+X = train.drop(columns=['index','quality'])
+y = train['quality']
+
+
+# "kf"라는 변수에 KFold를 지정해 줍시다.
+# n_splits는 5, shuffle은 True, random_state는 0으로 설정해주세요
+
+kf = KFold(n_splits=, shuffle=True, random_state=0)
+
+
+# "model"이라는 변수에 RandomForestClassifier를 지정해 줍시다.
+# valid_scores라는 빈 리스트를 하나 만들어줍시다.
+# test_predictions라는 빈 리스트를 하나 만들어 줍시다.
+
+model = RandomForestClassifier()
+valid_scores = []
+test_predictors = []
+
+
+# 지난 시간에 다루었던 kf.split()을 활용해, 반복문으로 X_tr, y_tr, X_val, y_val을 설정해봅시다.
+
+for train_idx, valid_idx in kf.split(X,y):
+	X_tr = X.iloc[train_idx]
+	y_tr = y.iloc[train_idx]
+	X_val = x.iloc[valid_idx]
+	y_val = y.iloc[valid_idx]
+
+# 앞의 문제에 이어서 반복문 속에서 model.fit(X_tr, y_tr)을 활용해 모델을 학습해봅시다
+
+for train_idx, valid_idx in kf.split(X,y):
+	X_tr = X.iloc[train_idx]
+	y_tr = y.iloc[train_idx]
+	X_val = x.iloc[valid_idx]
+	y_val = y.iloc[valid_idx]
+model.fit(X_tr,y_tr)
+
+
+# 앞의 문제에 이어서 반복문 속에서 "valid_prediction"이라는 변수에 model.predict(X_val)의 결과를 저장해 봅시다. 
+
+for train_idx, valid_idx in kf.split(X,y):
+	X_tr = X.iloc[train_idx]
+	y_tr = y.iloc[train_idx]
+	X_val = x.iloc[valid_idx]
+	y_val = y.iloc[valid_idx]
+model.fit(X_tr,y_tr)
+valid_prediction = model.predict(X_val)
+
+
+# 앞의 문제에 이어서 반복문 속에서 accuracy_score를 이용해, 모델이 어느정도의 예측 성능이 나올지 확인해봅시다.
+# 그리고 "valid_prediction"의 점수를 scores에 저장 해봅시다. 
+# 반복문에서 빠져나온 후에 np.mean()을 활용해 평균 점수를 예측해봅시다.
+
+for train_idx, valid_idx in kf.split(X,y):
+	X_tr = X.iloc[train_idx]
+	y_tr = y.iloc[train_idx]
+	X_val = x.iloc[valid_idx]
+	y_val = y.iloc[valid_idx]
+model.fit(X_tr,y_tr)
+valid_prediction = model.predict(X_val)
+score = accuracy_score(y_val, valid_prediction)
+valid_scores.append(score)z
+print(score)
+print('평균 점수:', np.mean(valid_scores))
+
+
+
+
+# 이제 어느정도의 성능이 나올지 알게 되었으니, 반복문 속에서 test를 예측해 "test_prediction"이라는 변수에 지정해봅시다.
+# test_prediction을 지정했다면, "test_precitions"라는 빈 리스트에 넣어줍시다.
+
+for train_idx, valid_idx in kf.split(X,y):
+	X_tr = X.iloc[train_idx]
+	y_tr = y.iloc[train_idx]
+	X_val = x.iloc[valid_idx]
+	y_val = y.iloc[valid_idx]
+model.fit(X_tr,y_tr)
+test_prediction = model.predict(test.drop(columns=['index'])
+test_predictions.append(test_prediction)
+
+
+# 이제 결과 값을 만들어 보겠습니다.
+#"test_precitions"를 Data Frame으로 만들어주세요
+
+
+test_predictions = pd.DataFrame(test_predicions)
+
+
+# DF.mode()를 활용해 열별 최빈값을 확인하고, "test_prediction"이라는 변수에 지정해봅시다.
+# "test_prediction"의 첫 행을 최종 결과값으로 사용합시다.
+
+test_prediction = test_predictions.mode()
+
+test_prediction = test_predictions.values[0]
+
+
+# data의 sample_submission 파일을 불러와 "quality"라는 변수에 "test_precition"을 저장해줍시다.
+# 그 이후에는, "data/submission_KFOLD.csv"에 저장하고, 제출해봅시다.
+
+sample_submission = pd.read_csv('data/sample_submission.csv')
+
+sample_submission['quality'] = test_prediction
+
+sample_submission.to_csv('data/submission_KFOLD.csv', index=False)
