@@ -1,0 +1,36 @@
+Bayesian Optimization 은 하이퍼 파라미터 튜닝과 관련된 내용이다.
+
+우리가 흔히 알고 있는 하이퍼 파라미터 튜닝은 Grid Search, Random Search이다/
+
+하지만 그 2가지에는 공통적인 문제점이 있다.
+
+'최적의 값을 찾아갈 수 없다' 라는 문제점입니다.
+
+
+
+이를 해결하기 위한 방법 중 하나가 'Bayesian Optimization' 이다.
+
+Bayseian Optimization은 보통 
+
+1. 'Gausain Process'라는 통계학을 기반으로 만들어진 모델로, 여러개의 하이퍼 파라미터들에 대해서, 'Aqusition Function' 을 적용했을 때, 가장 큰 값이 나올 확률이 높은 지점을 찾아낸다.
+
+
+
+우리가 다룰 Bayesian Optimization 패키지에서는 다음과 같은 단계가 필요하다.
+
+1. 변경할 하이퍼 파리미터의 범위를 설정한다.
+
+2. Bayesian Optimization 패키지를 통해, 하이퍼 파리미터의 범위 속 값들을 랜덤하게 가져온다.
+
+3. 처음 R번은 정말 Random하게 좌표를 꺼내 성능을 확인한다.
+
+4. 이후 B번은 Bayesian Optimization을 통해 B번만큼 최적의 값을 찾는다.
+
+
+# bayesian-optimization을 설치해보세요
+
+pip install bayesian-optimization
+
+# bayes_opt 패키지에서 BayesianOptimization을 불러와보세요
+
+from bayes_opy import BayesianOptimization
