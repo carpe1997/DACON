@@ -1,0 +1,10 @@
+seabron의 pairplot은 데이터에 들어 있는 각 컬럼(열)들의 모든 상관 관계를 출력한다.
+3차원 이상의 데이터라면 pairtplot 함수를 사용해 분포도를 그리면 손쉽게 모든 변수간의 상관관계를 얻을 수 있다.
+pairplot은 grid(격자) 형태로 각 집합의 조합에 대해 히스토그램과 분포도를 그린다.
+
+#"data"라는 변수에 train의 "fixed acidity"부터 "chlorides"까지의 변수를 저장해주세요
+data = train.loc[:,'fixed acidity':'chlorides']
+
+#data의 pairplot을 그려보세요
+sns.pairplot(data
+
