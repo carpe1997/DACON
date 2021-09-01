@@ -1,0 +1,41 @@
+다중공선성 해결
+
+
+
+다중공선성을 일으키는 변수들을 어떻게 다뤄줘야할지에 대해 알아보도록 하겠다.
+
+
+
+다중공선성을 해결하는 방법은 크게 3가지가 있다.
+
+
+
+1. 변수 정규화
+
+2. 변수 제거
+
+3. PCA(주성분 분석)
+
+
+
+이번 시간에는 정규호를 적용하기 전 분산 팽창 요인(VIF)를 확인하고 정규화를 적용한 후에 분산 팽창 요인을 확인해 서로 비교하도록 한다.
+#train 데이터의 VIF 계수 출력
+
+vif =pd.DataFrame()
+vif['VIF Factor"] = [variance_inflation_factor(train_values,i) for i in range(train.shape[1])]
+vif['features'] = train.columns
+vif
+
+# MinMaxScaler를 통해 변환
+scaler = MInMaxScaler()
+scaler.fit(train
+train_scale = scaler.transform(train)
+
+#Scaler를 통해 변환된 데이터의 VIF 확인
+new_train_df = pd.DataFrame()
+new_train_df.columns = train.columns
+
+vif= pd.DataFrame()
+vif['VIF Factor"] = [variance_inflation_factor(new_train_df.values,i) for i in range(new_train_df.shape[1])]
+vif['features'] = new_train_df.columns
+vif
