@@ -1,0 +1,25 @@
+다중공선성 해결
+
+이전 시간에 다중공선성을 해결하는 3가지 방법에 대하여 알려드렸고, 그 중 첫번째 방법이 ㄴ변수 정규화에 대해 실습해보았다.
+
+이번 시간에는 두번쨰 방법인 VIF 기준 10이상의 변수들을 제거해 보도록 하겠다.
+
+# train 데이터의 VIF 계수 출력
+vif =pd.DataFrame()
+vif["VIF Factor"] = [variance_inflation_factor(train.values,i) for i in range(train.shape[1])]
+vif['features'] = train.columns
+vif
+
+# 종속변수인 quality를 제외 한 vif 10이상 변수 제거
+
+new_train = train.drop(['alcohol','fixed acidity','total sulfur dioxide','density','pH','sulphates'],axis=1)
+
+# VIF 10이상의 변수 제거 후 VIF 다시 확인
+
+new_train_df = pd.DataFrae(new_train)
+new_train_df.columns = new_train.columns
+
+vif = pd.DataFrame()
+vif['VIF Factor'] = [variance_inflation_factor(new_train_df.values,i) for i in range(new_train_df.shape[1])]
+vif['features'] = new_train_df.columns
+vif
