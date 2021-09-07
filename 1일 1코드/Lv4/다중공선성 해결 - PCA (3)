@@ -1,0 +1,111 @@
+실습 순서는 다음과 같습니다.
+
+1. iris 데이터 로딩
+
+2. x축: sepal length y축: sepal width하여 품종 데이터 분포 시각화
+
+3. PCA를 이용해 차원 축소 후 변환된 데이터 셋을 2차원 상에서 시각화
+
+
+
+#setosa는 빨간색, versicolor는 노란색, virginica는 파란색
+
+color = ['r','y','b']
+
+
+
+# setosa의 target 값은 0, versicolor는 1, virginica는 2. 
+
+# 각 target 별로 다른 색으로 scatter plot 
+
+
+
+for i,c in enumerate(color):
+
+      x_axis_data = df[df['target'] == i]['sepal_length']
+
+      y_axis_data = df[df['target'] == i]['sepal_length']
+
+      plt.scatter(x_axis_data, y_axis_data, color=c, label=iris.target_names[i])
+
+
+
+plt.lengend()
+
+plt.xlabel('sepal length')
+
+plt.ylabel('sepal width')
+
+plt.show()
+
+
+
+# Target 값을 제외한 모든 속성 값을 MinMaxScaler를 이용하여 변환
+
+# 'sepal_length','sepal_width','petal_length','petal_width'
+
+
+
+df_features = df[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']]
+
+df_scaler =  MinMaxScaler().fit_transform(df_features)
+
+
+
+# PCA를 이용하여 4차원 변수를 2차원으로 변환
+
+pca = PCA(n_components=2)
+
+
+
+#fit( )과 transform( ) 을 호출하여 PCA 변환 / 데이터 반환
+
+pca.fit(df_scaler)
+
+df_pca = pca.transform(df_scaler)
+
+print(df_pca.shape)
+
+
+
+# PCA 변환된 데이터의 컬럼명을 각각 PCA_1, PCA_2로 지정
+
+df_pca = pd.DataFrane(df_pca)
+
+df_pca.columns=['PCA_1,'PCA_2']
+
+df_pca['target'] = df.target
+
+df_pca.head(3)
+
+
+
+#setosa는 빨간색, versicolor는 노란색, virginica는 파란색
+
+color = ['r','y','b']
+
+
+
+
+
+# setosa의 target 값은 0, versicolor는 1, virginica는 2. 
+
+# 각 target 별로 다른 색으로 scatter plot 
+
+for i,c in enumerate(color):
+
+      x_axis_data = df_pca[df_pca['target']==i]['PCA_1']
+
+      y_axis_data = df_pca[df_pca['target']==i]['PCA_2']
+
+      plt.scatter(x_axis_data, y_axis_data, data, color=c, label=iris.target_names[i])
+
+
+
+plt.legned()
+
+plt.xlabel('PCA_1')
+
+plt.ylabel('PCA_2')
+
+plt.show()
