@@ -1,0 +1,41 @@
+이전 시간에 Polynomial Features 라이브러리에 대해 간략하게 알아보았다면, 이번 시간에는 와인 품질 분류 데이터에 Polynomial Features를 적용해보고 decision Tree 모델을 이용해 품질 분류를 해보도록 하겠다.
+
+1. Train 데이터 변환
+
+2. 모델 학습(Decision Tree)
+
+3. Test 데이터 변환
+
+4. 추론
+
+5. 정답 파일 생성
+
+# train 데이터를 PolynomialFeatures 를 이용하여 변환
+
+poly_feautres = PolynomialFeatures(degree=2) # 2차원으로 설정
+
+# 와인 품질 기준인 quality 변수를 제외한 나머지 변수를 포함한 데이터 변환.
+df =train.drop("quality",axis=1)
+df_poly = poly_features.fit_transform(df) #fit_transform 메소드를 통해 데이터 변환
+df_poly = pd.DataFrame(df_poly) #polynomial Features로 변환 된 데이터를 데이터 프레임 형태로 변환
+
+# DecisionTreeClassifier 모델을 변환된 train 데이터로 학습
+
+from sklearn.tree import DecisionTreeClassifier
+
+model = DecisionTreeClassifier()
+model.fit(df_poly,train['quality']
+
+# test 데이터 변환
+poly_features = PolynomialFeatures(degree=2) #2차원으로 설정
+
+test_poly = poly.features.fit_transform(test)
+test_poly = pd.DataFrame(test_poly)
+
+#결과값 추론
+pred = model.predict(test_poly)
+
+#정답파일 생성
+submission = pd.read_csv("data/sanple_submission.csv")
+submission['qualiy'] = pred
+submission.to_csv('poly.csv',index=False)
