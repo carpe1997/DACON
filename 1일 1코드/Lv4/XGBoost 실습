@@ -1,0 +1,31 @@
+안녕하세요 이번시간에는 XGBoost를 이용해 와인 품질 분류를 진행하도록 하겠다.
+XGBoost의 경우 자주 사용했던 Scikit learn 라이브러리에서 기본적으로 제공하지 않는다.
+그래서 직접 XGBoost 라이브러리를 설치해 불러와야 한다.
+
+#데이터 확인
+train.head()
+
+#원핫 인코딩(pd.get_dummies())
+train_one = pd.get_dummies(train)
+test_one = pd.get_dummies(test)
+
+#모델 정의
+model = XGBClassifier()
+
+#모델 학습
+# X는 train에서 quality를 제외한 모든 변수
+# y는 train의 quality 변수
+
+# fit 메소드를 이용해 모델 학습
+model.fit(X,y)
+
+#predict 메소드와 test_one 데이터를 이용해 품질 예측
+pred = model.predict(test_one)
+
+#sample_submission.csv 파일을 불러와 예측된 값으로 채워주기
+submission = pd.read_csv('data/sample_submission.csv')
+submission['quaulity'] = pred
+submission.head()
+
+#정답파일 내보내기
+submission.to_csv('xgb_pred.csv',index=False)
