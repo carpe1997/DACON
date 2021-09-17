@@ -1,0 +1,40 @@
+이번 시간에는 LGBM 을 이용해 와인품질 분류를 진행하겠다.
+LGBM의 경우에도 Scikit learn 라이브러리에서 제공하지 않는다. 
+XGBoost와 마찬가지로 직접 라이브러리를 설치해 불러와야 한다.
+
+# 데이터 확인
+train.head()
+
+# 원핫 인코딩 (pd.get_dummies())
+train_one = pd.get_dummies(train)
+test_one = pd.get_dummies(test)
+
+# 모델 정의
+from lightgbm import LGBMClassifier
+
+model = LGBMClassifier()
+
+# 모델 학습
+# X 는 train에서 quality 를 제외한 모든 변수
+# y 는 train의 qulity 변수
+
+X = train_one.drop('quality',axis=1)
+y = test_one.drop['quality']
+
+
+# fit 메소드를 이용해 모델 학습
+
+model.fit(X,y)
+
+# predict 메소드와 test_one 데이터를 이용해 품질 예측
+
+pred = model.predict(test_one)
+
+# sample_submission.csv 파일을 불러와 예측된 값으로 채워 주기
+submission = pd.read_csv("sample_submission.csv") 
+submission['quality'] = pred
+submission.head()
+
+# 정답파일 내보내기
+submission.to_csv("lgbm_pred.csv",index=False)
+
