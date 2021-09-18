@@ -1,0 +1,21 @@
+K-fold 교차검증에 대해 간단히 설명하면 학습 데이터 셋을 학습 데이터와 검증 데이터로 나눠 반복해서 검증 및 평가하는 것을 의미한다.
+
+K-fold 문제점
+
+K-fold 의 경우 데이터 셋을 일정한 간격으로 잘라서 사용한다.
+그러다 보니 target의 비율이 일정하지 않게 테스트 셋에 들어갈 수 있다.
+만약 target이 0.1,2 세가지로 이뤄져 있는데, 이 상황에서 데이터를 잘라서 학습 할 때, 0,1 만 답으로 가지고 있는 학습데이터를 가지고 학습을 했을때는 당연하게도 모델은 2라는 답을 도출 할 수없다.
+마찬가지로 1,2 만 가지고 학습을 진행한다면 0이라는 답을 도출 할 수 없다. 이러한 점이 K-fold의 치명적인 문제점이다.
+
+K-fold의 문제점인 target 데이터의 비율을 일정하게 유지 하지 못하는 것을 일정하게 유지하며, 교차 검증을 진행하는 것을
+stratified k-fold 라고 한다.
+
+stratified k-fold의 사용법은 다음과 같다.
+
+from sklearn.model_selection import StratifiedKFold #sklearn 에서 라이브러리 호출
+
+for train_idx, valid_idx in skf.split(X,y):
+
+# 인덱스를 이용해 학습 데이터 셋과 검증 데이터 셋으로 나눔
+    train_df = train.iloc[train_idx]
+    valid_df = train.iloc[valid_idx]
