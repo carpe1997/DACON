@@ -1,0 +1,40 @@
+지난 시간에 Stratified K-fold 개념에 대해 배웠다.
+Stratified K-fold란, K-fold의 문제점인 target 데이터의 비율을 일정하게 유지하며, 교차 검증을 진행하는 것이다.
+
+이번 시간에는 stratified k-fold와 Light GBM 을 이용해 와인 품질 분류를 실습해보도록 하겠다.
+
+# Stratified K-folde라이브러리를 이용해 5개의 fold로 나눔
+
+skt = StrarifiedKFold(n_splits=5)
+
+X = tarin_onde.drop('quality',axis=1)
+y = train['quality']
+cnt = 1
+acc = 0
+
+for train_idx, valid_idx in skf.split(X,y):
+    train_data = train.iloc[train_idx]
+    valid_data = valid.iloc[valid_idx]
+
+# 모델 정의
+
+model = LGBMClassifier()
+
+#train_X는 train_data 에서 quality를 제외한 모든 변수
+#train_y는 train_data['quality']
+
+#fit 메소드를 이용해 모델 학습
+model.fit(train_X, train_y)
+
+valid_X = valid_data.drop('quality',axis=1)
+valid_y = valid_data['quality']
+
+#predict 메소드와 valid_X 데이터를 이용해 품질 예측
+pred = model.predict(valid_X)
+
+#모델 정확도 출력
+print(cnt,"번째 모델 정확도:",accuracy_score(pred,valid_y)
+acc + = accuracy_score(pred,valid_y)
+cnt + = 1
+
+print('모델 정확도 평균:',acc/5)
