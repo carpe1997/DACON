@@ -1,0 +1,30 @@
+Voting Classifier란 여러개의 모델을 결합하여 더 좋은 예측 결과를 도출하는 앙상블 기법 중 하나이다.
+
+Voting Classifier에는 hard voting 방법 과 soft voting 방법이 있다.
+
+
+
+Hard Voting
+
+Hard Voting은 Majority Voting이라고도 하며, 각각의 모델들이 결과를 예측하면 각 모델의 예측을 모아 다수겨 투표로 최종 예측 결과를 선정하는 방식이다.
+
+
+
+그림을 보면 첫 번째 분류기는 0.9의 확률로 생존을 선택, 두 번째 분류기는 0.6확률로 사망을 선택, 세번째 분류기는 0.7의 확률로 사망을 선택하였다. 생존을 선택한 모델이 1개, 사망을 선택한 모델이 2개이기때문에 Voting Classifier은 최종적으로 사망을 선택하게 된다.
+
+
+
+Soft Voting
+
+Soft Voting은 Probability Voting이라고 하며, 각 모델들이 예측한 결과값의 확률을 합산해 최종 예측 결과를 선정한다.
+
+단순히 개별 분류기의 예측 결과만을 고려하지 않고 높은 확률값을 반환하는 모델의 비중을 고려할 수 있기 때문에 Hard Voting 보다 성능이 더 좋은 편이다.
+
+
+그림을 살펴보면, 3개의 모델이 생존을 선택할 확률의 평균은 0.533이고, 사망을 선택할 확률의 평균은  0.466이다.
+
+최종적으로 Voting Classifier는 Hard Voting과 다르게 생존을 선택하게 된다.
+
+
+
+오늘은 Voting Classifier에 대해 알아 보았다.. 다음 시간에는 Voting Classifier을 이용해 와인 품질 분류 실습을 진행 하도록 하겠다.
