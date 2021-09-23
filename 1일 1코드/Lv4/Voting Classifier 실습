@@ -1,0 +1,30 @@
+오늘은 이전 시간에 배운 Voting Classifier실습을 진행 하도록 하겠다.
+
+Voting Classifier에는 Hard voting 과 Soft voting 두 개중 Soft Voting을 이용 할 예정으로 VotingClassifier은 sklearn라이브러리에서 제공하겠다.
+
+from sklearn.ensemble import VotingClassifier
+
+VC = VotingClassifier(estimators=[('rf',RF),('xgb',XGB),('lgbm',LGBM)],voting='soft')
+
+from lightgbm import LGBMClassifier
+from xgboost import XGBClassifier
+from sklearn.ensemble import VotingClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+#모델 정의
+LGBM = LGBMClassifier()
+XGB = XGBClassifier()
+RF = RandomForestClassifier()
+
+#모델 학습
+#X는 train에서 quality를 제외한 모든 변수
+#y는 train의 quality변수
+
+X = train_one.drop('quality',axis=1)
+y = train_one['quality']
+
+#fit 메소드를 이용해 모델 학습
+VC.fit(X,y)
+
+#predict 메소드와 test_one 데이터를 이용해 품질 예측
+pred = VC.predict(test_one)
