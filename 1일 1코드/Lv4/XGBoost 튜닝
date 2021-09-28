@@ -1,0 +1,43 @@
+이번 시간에는 Bayesian Optimization을 이영헤 XGBoost 모델을 튜닝해보도록 하겠다.
+
+튜닝에 앞서 XGBoost의 하이퍼 파라미터를 알아보겠다.
+
+learning rate 기본값:0.3 
+- learning reate가 높을 수록 과적합하기 쉽다.
+
+subsample 기본값:1
+- weak learner가 학습에 사용하는 데이터 샘플링 비율이다.
+- 보통 0.5 ~ 1 사용된다.
+- 값이 낮을수록 과적합이 방지된다.
+
+n_estimator 기본값:100
+- 생성할 weak learner 수
+- learning rate가 낮을 때, n_estimator를 높여야 과적합이 방지된다.
+
+max_depth 기본값:6
+- 트리의 maximum depth이다
+- 적정한 값이 제시되어야 하고 보통 3~10 사이 값이 적용된다.
+- max_depth가 높을수록 모델의 복잡도가 커져 과적화하기 쉽ek
+
+gamma 기본값:0
+- leaf node의 추가분할을 결정할 최소손실 감소값이다.
+- 해당값보다 손실이 크게 감소할때 분리한다.
+- 값이 높을수록 과적합이 방지된다.
+
+colsample_bytree 기본값:1
+- 각 tree별 사용된 feature의 퍼센테이지이다
+.- 보통 0.5~1 사용된다.
+- 값이 낮을수록 과적합이 방지된다.
+
+lambda 기본값:1
+- 가중치에 대한 L2 Regularization 적용 값
+- 피쳐 개수가 많을 떄 적용을 검토
+- 이 값이 클수록 과적합 감소 효과
+
+alpha 기본값:0
+- 가중치에 대한 L1 Regularization 적용 값
+- 피쳐 개수가 많을 떄 적용을 검토
+- 이 값이 클수록 과적합 감소 효과
+
+
+
