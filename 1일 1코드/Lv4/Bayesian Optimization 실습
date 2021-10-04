@@ -66,3 +66,4 @@ print(max_params)
 
 # Bayesian Optimization의 결과를 "BO_tuend_rf"라는 변수에 저장해보세요
 BO_tuend_rf = RandomForestClassifier(max_params)
+ 
