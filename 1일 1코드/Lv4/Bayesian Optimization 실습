@@ -4,7 +4,7 @@
 
 변경할 하이퍼 파라미터의 범위를 설정한다.
 Bayesian Optimization 에 필요한 함수 생성
-Bayesian Optimization를 이용해 하이퍼 파라미터 튜닝
+Bayesian Optimization를 이용해 하이퍼 파라미터 튜닝 
 
 # X에 학습할 데이터를 , y에 목표 변수를 저장해주세요
 
