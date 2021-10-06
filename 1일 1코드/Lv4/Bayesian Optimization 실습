@@ -9,7 +9,7 @@ Bayesian Optimization를 이용해 하이퍼 파라미터 튜닝
 # X에 학습할 데이터를 , y에 목표 변수를 저장해주세요
 
 X = train.drop(columns=['index','quality']) 
-y = train['qualit']
+y = train['qualit']       
 
 # 랜덤포레스트의 하이퍼 파라미터의 범위를 dictionary 형태로 지정해주세요
 # Key는 랜덤포레스트의 hyperparameter 이름이고, value는 탐색할 범위이다.
