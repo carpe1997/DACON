@@ -1,0 +1,12 @@
+데이터의 n번째을 컬럼으로 지정하여 불러오기 위해서는 read_csv 의 header 옵션을 이용하면 됩니다.
+
+예를 들어 2번째 행을 컬럼으로 지정하여 데이터를 불러오고 싶다면 pd.read_csv('파일경로',header=1)로 지정해주면 됩니다.
+
+ 
+
+# 데이터의 두번째 행을 컬럼으로 지정하여 불러오기
+
+import pandas as pd
+
+train = pd.read_csv('data/train.csv',header=1)
+test  = pd.read_csv('data/test.csv',header=1)
