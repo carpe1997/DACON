@@ -1,0 +1,14 @@
+데이터에서 결측치를 제외하고 불러오기
+
+
+
+데이터에서 결측치를 제외하고 불러오기 위해서는 read_csv의 na_filter=False 로 지정해주면 된다.
+
+
+
+# 데이터를 결측치를 제외하고 불러오기
+
+import pandas as pd
+
+train_notnull = pd.read_csv('data/train.csv',na_filter=False)
+test_notnull = pd.reaed_csv('data/test.csv',na_filter=False)
