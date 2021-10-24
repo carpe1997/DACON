@@ -1,0 +1,14 @@
+데이터에서 컬럼을 index로 지정하여 불러오기
+
+ 
+
+데이터에서 컬럼을 인덱스로 지정하여 불러오기 위해서는 read_csv의 index_col 옵션을 사용하면 된다.
+
+예를 들어, 데이터에 python 컬럼이 있다고 했을 때, pd.read_csv('파일경로',index_col='python')으로 지정해주면 된다.
+
+ 
+
+# index 컬럼을 인덱스로 지정해서 불러오기
+
+train_index = pd.read_csv('data/train.csv',index_col='index')
+test_index = pd.read_csv('data/test,csv',index_col='index')
