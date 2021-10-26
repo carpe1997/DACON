@@ -1,0 +1,14 @@
+파이썬에서 데이터 파일을 내보내기 위해서는 pandas 라이브러리의 to_csv 함수를 이용하면 손쉽게 데이터를 내보낼수있다.
+
+DataFrame.to_csv('path')로 저장할 수 있고, path에 저장하고 싶은 경로와 파일명을 함께 넣어주면 된다.
+
+하지만, to_csv 메서도 안에 아무런 옵션도 지정해주지 않는다면 다음과 같이 인덱스도 데이터에 포함되어 저장되기 떄문에 index는 포함하지않고 저장하는 옵션을 지정해주어야 한다.
+
+
+index를 포함시키지 않고 데이터를 저장하기 위해서는 to_csv(inedx=False)로 지정해서 데이터를 저장해주면 된다.
+
+#index를 포함하지 않고 데이터 저장하기
+import pandas as pd
+
+train.to_csv('data/train.csv',index=False)
+test.to_csv('data/test.csv',index=False)
