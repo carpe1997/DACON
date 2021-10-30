@@ -1,0 +1,7 @@
+데이터 프레임의 info() 함수는 데이터에 대한 전반적인 정보를 나타냅니다. 데이터 프레임을 구성하는 행과 열의 크기, 컬럼명, 컬럼을 구성하는 데이터 유형, 결측치 등 다양한 정보를 출력 해줍니다.
+
+import pandas as pd
+
+train = pd.read_csv('data/train.csv')
+
+train['category'].info()
