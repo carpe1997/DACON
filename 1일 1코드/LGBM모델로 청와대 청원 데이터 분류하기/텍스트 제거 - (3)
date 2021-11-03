@@ -1,0 +1,32 @@
+이전 시간에 이어 특정 텍스트를 제거하는 방법에 대해 알아보겠습니다.
+
+이번 시간에 알아 볼 방법은 'isalnum()' 메소드를 사용하는 방법입니다.
+
+
+
+- isalnum()
+
+isalnum() 메소드는 문자열의 문자가 알파벳(A to z) 및 숫자(0~9)인지 확인하는데 사용됩니다.
+
+문자열에 알파벳 혹은 숫자가 포함된 경우 True 값이 반환됩니다.
+
+사용방법은 저번 시간에 배운 isalpha()와 동일합니다.
+
+# isalnum 메소드를 이용해 output에 해당하는 값이 출력 되도록 특정 문자열을 제거 해보세요.
+
+string="year : 2021, month : 09, day : 24"
+# output : year2021month09day24
+
+
+#isalnum를 이용해 알파벳값만 담을 리스트
+isalnum_list = []
+
+
+  #isalnum()를 이용해 알파벳값인지 판별
+for c in string:
+	if c.isalnum():
+    	isalnum_list.append(c)
+
+#join()메소드를 이용해 알파벳값 만 담긴 리스트를 결합
+string_isalnum = ''.join(isalnum_list)
+print(string_isalnum)
