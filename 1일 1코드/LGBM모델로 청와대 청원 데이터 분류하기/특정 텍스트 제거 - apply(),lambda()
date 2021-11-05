@@ -1,0 +1,34 @@
+이전 시간에 이어 특정 텍스트를 제거하는 방법에 대해 알아보겠습니다.
+
+이번 시간에 알아 볼 방법은 'isdecimal()' 메소드를 사용하는 방법입니다.
+
+ 
+
+-isdecimal()
+
+isdecimal()는 해당 문자열이 0~9까지의 수로 이루어진 것인지 검사합니다. 다시 말해, int로 바로 변환할 수 있는 수 인지를 검사합니다. 따라서 문자열이 0~9까지의 수로 이뤄졌을 경우 True를 변환하고, 그렇지 않으면 False를 반환합니다.
+
+사용방법은 저번 시간에 배운 isalnum()과 동일합니다.
+
+ 
+
+# isdecimal 메소드를 이용해 output에 해당하는 값이 출력 되도록 특정 문자열을 제거 해보세요.
+
+string = "1-2$3%4 5a"
+
+# output : 12345
+
+#isdecimal를 이용해 알파벳값만 담을 리스트
+
+isdecimal_list = []
+
+ #isdecimal()를 이용해 알파벳값인지 판별
+
+for c in sting:
+	if c.isdecimal():
+    	isdecimal_list.append(c)
+ 
+#join()메소드를 이용해 알파벳값 만 담긴 리스트를 결합
+
+string_isdeciaml = ''.join(isdecimal_list)
+print(string_isdecimal)
