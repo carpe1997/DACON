@@ -1,0 +1,26 @@
+이번 시간과 다음 시간에는 형태소 분석기를 이용해 청와대 청원 데이터의 형태소를 분석하고 데이터의 형태소 중 조사를 제거하는 실습을 진행 해보도록 하겠습니다.
+
+데이터에서 조사를 제거하는 이유는 조사는 큰 의미를 가지고 있지 않기 때문에 오히려 분석에 방해가 될 수 있습니다.
+
+실습 순서는 다음과 같습니다.
+
+텍스트 데이터의 형태소 별로 분리
+형태소가 조사인 글자를 제외 하여 새로운 텍스트 생성
+기존의 텍스트 데이터를 새로운 텍스트로 변경
+# 조사를 제거하기 위함 함수 정의 
+
+def func(text):
+	#형태소 분석
+    okt_pos = okt.pos(str(text),norm=True,stem=True)
+    
+    #조사를 제거한 새로운 문자열 정의
+    new_word=''
+    
+    for word, pos in okt_pos:
+    	#품사가 조사가 아니면
+        if pos != 'Josa':
+        	#new_word+=word
+ 	return new_word
+    
+train['data'] = train['data'].apply(lambda x: func(x))
+test['data'] = test['data'].apply(lambda x:func(x))
