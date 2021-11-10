@@ -1,0 +1,52 @@
+이번시간에는 BOW의 카운트 기반 벡터화(CountVectorizer)에 대해 알아 보겠습니다.
+
+ 
+
+카운트 기반 벡터화
+Bag of Words를 설명하면서 텍스트 데이터를 숫자형 데이터로 변환하는 방법에 대해 알아보았습니다. 그와 마찬가지로, 단어에 값을 부여할 때 각 문장에서 해당 단어가 나타나는 횟수
+
+즉, Count를 부여하는 경우를 카운트 벡터화라고 합니다. 카운트 벡터화에서는 값이 높을수록 중요한 단어로 인식됩니다.
+
+ 
+
+카운트 기박 벡터화 실습
+카운트 기반 벡터화는 사이킷런의 CountVectorizer 클래스를 활용하여 적용할 수 있습니다.
+
+아래 코드 CountVectorzier를 활용하여 한 문장을 BOW로 만드는 코드입니다.
+
+from sklearn.feature_extraction.text import CountVecorizer
+
+corpus = [
+
+    'This is the first document.',
+
+    'This is the second second document.',
+
+    'And the third one.',
+
+    'Is this the first document?',
+
+    'The last document?',
+
+]
+
+vect = CountVectorizer()
+print(vect.fit_transform(corpus).toarray()) # corpus 리스트 내부 텍스트로 부터 각 단어의 빈도 수를 기록합니다.
+print(vect.vocabulary_) # 각 단어의 인덱스가 어떻게 부여되었는지를 보여줍니다.
+
+# output :
+
+# [[0 1 1 1 0 0 0 1 0 1]
+
+# [0 1 0 1 0 0 2 1 0 1]
+
+# [1 0 0 0 0 1 0 1 1 0]
+
+# [0 1 1 1 0 0 0 1 0 1]
+
+# [0 1 0 0 1 0 0 1 0 0]]
+
+# {'this': 9, 'is': 3, 'the': 7, 'first': 2, 'document': 1, 'second': 6, 'and': 0, 'third': 8, 'one': 5, 'last': 4}
+
+
+출처: https://carpe08.tistory.com/179 [이서]
