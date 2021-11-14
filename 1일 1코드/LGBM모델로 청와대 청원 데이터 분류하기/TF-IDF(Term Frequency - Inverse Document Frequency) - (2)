@@ -1,0 +1,31 @@
+이번 시간에는 TF-IDF를 이용하여 청와대 청원 데이터를 벡터화 시켜 보도록 하겠습니다.
+
+실습 순서는 다음과 같습니다.
+
+
+
+train 데이터를 이용해 TF-IDF 학습(fit)
+학습(fit) 된 TF-IDF를 이용해 train 데이터 변환(transform)
+train 데이터로 학습(fit) 된 TF-IDF를 이용해 test 데이터 변환(transform)
+
+
+그럼 바로 실습을 진행해보도록 하겠습니다
+
+#라이브러리 로딩
+
+from sklearn.feature_extraction.text import TfidVectorizer
+
+#TF-IDF으로 train 데이터를 피처 벡터화 변환 수행
+
+vect = TfidfVectorizer()
+
+vect = TfidfVectorizer()
+vext.fit(train['data'])
+train_x = vect.transform(train['data'])
+
+print('train 데이터 사이즈', train_x.shape)
+
+#Train Data로 fit()된 TF-IDF를 이용해 테스트 데이터를 Feature Vector화 변환 수행
+
+test_x = vect.transform(test['data']_-)
+print('test 데이터 사이즈', test_x.shape)
