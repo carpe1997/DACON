@@ -1,0 +1,48 @@
+train_test_split()을 이용한 train / validation(test) 분리
+ 
+
+train_test_split 함수를 통해 단 1줄로 깔끔하게 분리할 수 있다.
+
+패키지는 sklearn.model_selection에 있습니다.
+
+ 
+
+train_test_split 메소드는 총 4개의 값을 반환하고 2개의 값을 필수적으로 채워주어야 합니다.
+
+반환하는 값은 학습에 사용할 X,y 값, 검증에 사용할 X,y 값 이렇게 총 4개의 값을 반환하고, 입력값으로는 원본 데이터의 X,y를 채워주어야 합니다.
+
+ 
+
+#라이브러리 로딩
+from sklearn.model_selection import train_test_split
+
+X = train_x
+y = train['category']
+
+
+X_train, X_test, y_train, y_test = train_test_split(X,y,stratify=y) 
+
+print('x_train 데이터 사이즈', x_train.shape)
+
+print('x_valid 데이터 사이즈', x_valid.shape)
+
+print('y_train 데이터 사이즈', y_train.shape)
+
+print('y_valid 데이터 사이즈', y_valid.shape)
+
+
+
+
+
+output : 
+
+x_train 데이터 사이즈 (30000, 697226)
+
+x_valid 데이터 사이즈 (10000, 697226)
+
+y_train 데이터 사이즈 (30000,)
+
+y_valid 데이터 사이즈 (10000,)
+
+
+출처: https://carpe08.tistory.com/201 [이서]
